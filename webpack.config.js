@@ -53,6 +53,20 @@ Encore
         config.corejs = 3;
     })
 
+    .configureBabel(function (babelConfig) {
+      babelConfig.plugins.push(['@babel/plugin-proposal-decorators', {
+        decoratorsBeforeExport: true,
+      }]);
+    })
+
+    .enablePostCssLoader((options) => {
+        options.config = {
+            // the directory where the postcss.config.js file is stored
+            path: './'
+        };
+    })
+
+
     // enables Sass/SCSS support
     //.enableSassLoader()
 

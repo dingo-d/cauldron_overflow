@@ -11,17 +11,23 @@ import '../css/app.css';
 // Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
 import $ from 'jquery';
 
-const $container = $('.js-vote-arrows');
+import {Votes} from './components/votes';
 
-$container.find('a').on('click', function (e) {
-  e.preventDefault();
-  const $link = $(e.currentTarget);
+const votingOptions = {
+  voteContainer: '.js-vote-arrows',
+  voteTotals: '.js-vote-totals',
+};
 
-  $.ajax({
-    url: '/comments/10/vote/'+$link.data('direction'),
-    method: 'POST'
-  }).then(function (data) {
-    $container.find('.js-vote-total').text(data.votes);
-  });
-});
+const votes = new Votes(votingOptions);
 
+if($(votingOptions.voteContainer).length) {
+ $('.js-vote-up').on('click', (e) => {
+   e.preventDefault();
+   votes.vote('up');
+ });
+
+ $('.js-vote-down').on('click', (e) => {
+   e.preventDefault();
+   votes.vote('down');
+ });
+}
