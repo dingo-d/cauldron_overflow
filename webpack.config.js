@@ -55,7 +55,10 @@ Encore
 
     .configureBabel(function (babelConfig) {
       babelConfig.plugins.push(['@babel/plugin-proposal-decorators', {
-        decoratorsBeforeExport: true,
+        legacy: true,
+      }]);
+      babelConfig.plugins.push(['@babel/plugin-proposal-class-properties', {
+        loose: true,
       }]);
     })
 

@@ -1,12 +1,12 @@
 {
     "devDependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.10.1",
         "@babel/plugin-proposal-decorators": "^7.10.0",
         "@symfony/webpack-encore": "^0.30.0",
         "autoprefixer": "^9.8.0",
         "bootstrap": "^4.5.0",
         "core-js": "^3.0.0",
         "decko": "^1.2.0",
-        "jquery": "^3.5.1",
         "postcss-loader": "^3.0.0",
         "regenerator-runtime": "^0.13.2",
         "webpack-notifier": "^1.6.0"
@@ -24,5 +24,8 @@
         "last 2 versions",
         "Firefox ESR",
         "not dead"
-    ]
+    ],
+    "dependencies": {
+        "whatwg-fetch": "^3.0.0"
+    }
 }

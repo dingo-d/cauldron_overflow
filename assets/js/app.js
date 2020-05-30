@@ -8,26 +8,20 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import '../css/app.css';
 
-// Need jQuery? Install it with "yarn add jquery", then uncomment to import it.
-import $ from 'jquery';
-
 import {Votes} from './components/votes';
 
 const votingOptions = {
   voteContainer: '.js-vote-arrows',
-  voteTotals: '.js-vote-totals',
+  voteTotals: '.js-vote-total',
 };
 
 const votes = new Votes(votingOptions);
 
-if($(votingOptions.voteContainer).length) {
- $('.js-vote-up').on('click', (e) => {
-   e.preventDefault();
-   votes.vote('up');
- });
-
- $('.js-vote-down').on('click', (e) => {
-   e.preventDefault();
-   votes.vote('down');
+if(document.querySelectorAll(votingOptions.voteContainer).length) {
+ [...document.querySelectorAll('.js-vote')].map((element) => {
+   element.addEventListener('click', (event) => {
+     event.preventDefault();
+     votes.vote(element.getAttribute('data-direction'), event);
+   });
  });
 }
