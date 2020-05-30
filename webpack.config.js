@@ -65,13 +65,13 @@ Encore
     .enablePostCssLoader((options) => {
         options.config = {
             // the directory where the postcss.config.js file is stored
-            path: './'
+            path: 'config/postcss.config.js'
         };
     })
 
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
@@ -79,9 +79,6 @@ Encore
     // uncomment to get integrity="..." attributes on your script & link tags
     // requires WebpackEncoreBundle 1.4 or higher
     //.enableIntegrityHashes(Encore.isProduction())
-
-    // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
 
     // uncomment if you use API Platform Admin (composer req api-admin)
     //.enableReactPreset()

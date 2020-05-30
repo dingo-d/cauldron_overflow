@@ -1,0 +1,7 @@
+$footer: (
+    background: $base-smoke-color,
+);
+
+footer {
+    background-color: map_get($footer, 'background');
+}
