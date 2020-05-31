@@ -57,7 +57,7 @@ class QuestionController extends AbstractController
     $parsedQuestionText = $cache->get('markdown_'.md5($questionText), function() use ($questionText, $markdownParser) {
       return $markdownParser->transformMarkdown($questionText);
     });
-    
+
     return $this->render('question/show.html.twig', [
       'question' => ucwords(str_replace('-', ' ', $slug)),
       'questionText' => $parsedQuestionText,
