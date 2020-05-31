@@ -1,0 +1,42 @@
+{
+    "devDependencies": {
+        "@babel/plugin-proposal-class-properties": "^7.10.1",
+        "@babel/plugin-proposal-decorators": "^7.10.0",
+        "@symfony/webpack-encore": "^0.30.0",
+        "autoprefixer": "^9.8.0",
+        "core-js": "^3.0.0",
+        "decko": "^1.2.0",
+        "node-sass": "^4.14.1",
+        "postcss-loader": "^3.0.0",
+        "regenerator-runtime": "^0.13.2",
+        "sass-loader": "^8.0.2",
+        "tailwindcss": "^1.4.6",
+        "tailwindcss-gradients": "^3.0.0",
+        "webpack-notifier": "^1.6.0"
+    },
+    "license": "MIT",
+    "private": true,
+    "scripts": {
+        "dev-server": "encore dev-server",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production --progress"
+    },
+    "browserslist": [
+        "> 0.5%",
+        "last 2 versions",
+        "Firefox ESR",
+        "not dead"
+    ],
+    "dependencies": {
+        "whatwg-fetch": "^3.0.0"
+    },
+    "peerDependencies": {
+        "@babel/core": "^7.7.0",
+        "webpack": "^4.43.0"
+    },
+    "resolutions": {
+        "@babel/core": "^7.7.0",
+        "webpack": "^4.43.0"
+    }
+}

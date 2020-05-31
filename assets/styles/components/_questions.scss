@@ -1,0 +1,70 @@
+$question: (
+        container-background: $base-smoke-color,
+        container-show-background: $base-brick-color,
+        image-border: $base-white-color,
+        display-color: $base-white-color,
+        shown-text-color: $base-white-color,
+        title-color: $base-dark-color,
+        title-hover-color: $base-midnight-color,
+        shown-title-color: $base-white-color,
+        response-background: $base-navy-color,
+        response-color: $base-white-color,
+);
+
+.q-container {
+  border-top-right-radius: .25rem;
+  border-top-left-radius: .25rem;
+  background-color: map_get($question, 'container-background');
+
+  &-show {
+    border-top-right-radius: .25rem;
+    border-top-left-radius: .25rem;
+    background-color: map_get($question, 'container-show-background');
+
+    img {
+      border: 2px solid map_get($question, 'image-border');
+      border-radius: 50%;
+    }
+  }
+
+  img {
+    border: 2px solid map_get($question, 'image-border');
+    border-radius: 50%;
+  }
+}
+
+.q-display {
+  background: map_get($question, 'display-color');
+  border-radius: .25rem;
+
+  &-response {
+    background: map_get($question, 'response-background');
+    color: map_get($question, 'response-color');
+  }
+}
+
+.q-title-show {
+  text-transform: uppercase;
+  font-size: 1.3rem;
+  color: map_get($question, 'shown-text-color');
+}
+
+.q-title {
+  text-transform: uppercase;
+  color: map_get($question, 'title-color');
+
+  &:hover {
+    color: map_get($question, 'title-hover-color');
+  }
+
+  &-show {
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    color: map_get($question, 'shown-title-color');
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+}
+

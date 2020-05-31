@@ -1,0 +1,20 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "core/colors";
+
+@import "layout/footer";
+@import "components/answer";
+@import "components/button";
+@import "components/jumbotron";
+@import "components/questions";
+@import "components/votes";
+
+body {
+    font-family: spartan;
+    color: $base-dark-color;
+}
+
+
+
