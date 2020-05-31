@@ -20,7 +20,11 @@
         "symfony/yaml": "5.0.*"
     },
     "require-dev": {
+        "pestphp/pest": "^0.1.5",
+        "phpunit/phpunit": "^9.0",
         "sensiolabs/security-checker": "^6.0",
+        "symfony/browser-kit": "5.0.*",
+        "symfony/css-selector": "5.0.*",
         "symfony/profiler-pack": "^1.0"
     },
     "config": {
@@ -59,7 +63,8 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "test:run": "@php ./vendor/bin/pest"
     },
     "conflict": {
         "symfony/symfony": "*"
@@ -69,5 +74,7 @@
             "allow-contrib": false,
             "require": "5.0.*"
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
