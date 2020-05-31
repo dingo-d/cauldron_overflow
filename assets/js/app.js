@@ -8,20 +8,21 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import '../styles/app.scss';
 
-import {Votes} from './components/votes';
-
 const votingOptions = {
   voteContainer: '.js-vote-arrows',
   voteTotals: '.js-vote-total',
 };
 
-const votes = new Votes(votingOptions);
-
 if(document.querySelectorAll(votingOptions.voteContainer).length) {
- [...document.querySelectorAll('.js-vote')].map((element) => {
-   element.addEventListener('click', (event) => {
-     event.preventDefault();
-     votes.vote(element.getAttribute('data-direction'), event);
-   });
- });
+  import('./components/votes').then(({Votes}) => {
+
+    const votes = new Votes(votingOptions);
+
+    [...document.querySelectorAll('.js-vote')].map((element) => {
+     element.addEventListener('click', (event) => {
+       event.preventDefault();
+       votes.vote(element.getAttribute('data-direction'), event);
+     });
+    });
+  });
 }
