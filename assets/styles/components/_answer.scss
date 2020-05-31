@@ -1,0 +1,8 @@
+
+.answer-link {
+  &:hover{
+    .magic-wand {
+      transform: rotate(20deg);
+    }
+  }
+}

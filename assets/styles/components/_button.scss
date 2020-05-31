@@ -1,0 +1,55 @@
+$button: (
+        color: $base-white-color,
+        background-color: $base-brick-color,
+        border-color: $base-wall-color,
+        badge-color: $base-brick-color,
+        badge-background-color: $base-white-color,
+);
+
+.btn-question {
+  color: map_get($button, 'color');
+  background-color: map_get($button, 'background-color');
+  border-color: map_get($button, 'border-color');
+
+  &:hover,
+  &:focus,
+  &:active,
+  &.active {
+    color: map_get($button, 'color');
+    background-color: map_get($button, 'background-color');
+    border-color: map_get($button, 'border-color');
+    background-image: none;
+  }
+}
+
+.open .dropdown-toggle.btn-question {
+  color: map_get($button, 'color');
+  background-color: map_get($button, 'background-color');
+  border-color: map_get($button, 'border-color');
+  background-image: none;
+}
+
+// Ugly, but will refactor it later on.
+.btn-question.disabled,
+.btn-question[disabled],
+fieldset[disabled] .btn-question,
+.btn-question.disabled:hover,
+.btn-question[disabled]:hover,
+fieldset[disabled] .btn-question:hover,
+.btn-question.disabled:focus,
+.btn-question[disabled]:focus,
+fieldset[disabled] .btn-question:focus,
+.btn-question.disabled:active,
+.btn-question[disabled]:active,
+fieldset[disabled] .btn-question:active,
+.btn-question.disabled.active,
+.btn-question[disabled].active,
+fieldset[disabled] .btn-question.active {
+  background-color: map_get($button, 'background-color');
+  border-color: map_get($button, 'border-color');
+}
+
+.btn-question .badge {
+  color: map_get($button, 'badge-color');
+  background-color: map_get($button, 'badge-background-color');
+}

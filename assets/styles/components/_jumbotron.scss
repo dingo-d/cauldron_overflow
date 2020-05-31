@@ -1,0 +1,11 @@
+$jumbotron: (
+    background: $base-brick-color,
+    background-gradient-end: $base-navy-color,
+);
+
+
+.jumbotron-img {
+    background: map_get($jumbotron, 'background');
+    background: linear-gradient(302deg, map_get($jumbotron, 'background') 16%, map_get($jumbotron, 'background-gradient-end') 97%);
+    color: #fff;
+}

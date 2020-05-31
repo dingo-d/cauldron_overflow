@@ -1,0 +1,29 @@
+$vote: (
+        arrows-color: $base-dark-color,
+        arrows-up-color: $base-grass-color,
+        arrows-down-color: $base-caution-color,
+);
+
+.vote-arrows {
+  font-size: 1.5rem;
+
+  span {
+    font-size: 1rem;
+  }
+
+  a {
+    color: map_get($vote, 'arrows-color');
+  }
+}
+
+.vote-up {
+  &:hover {
+    color: map_get($vote, 'arrows-up-color');
+  }
+}
+
+.vote-down {
+  &:hover {
+    color: map_get($vote, 'arrows-down-color');
+  }
+}

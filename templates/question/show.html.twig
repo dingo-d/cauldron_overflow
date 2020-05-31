@@ -4,19 +4,19 @@
 
 {% block body %}
 <div class="container">
-    <div class="row">
-        <div class="col-12">
+    <div>
+        <div>
             <h2 class="my-4">Question</h2>
-            <div style="box-shadow: 2px 3px 9px 4px rgba(0,0,0,0.04);">
+            <div>
                 <div class="q-container-show p-4">
-                    <div class="row">
-                        <div class="col-2 text-center">
+                    <div>
+                        <div class="text-center">
                             <img src="{{  asset('images/tisha.png') }}" alt="Mallory Avatar" width="100" height="100">
                         </div>
                         <div class="col">
                             <h1 class="q-title-show">{{ question }}</h1>
                             <div class="q-display p-3">
-                                <i class="fa fa-quote-left mr-3"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="quote-left" class="inline-block" width="16" height="16" role="img" viewBox="0 0 512 512"><path fill="currentColor" d="M464 256h-80v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8c-88.4 0-160 71.6-160 160v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48zm-288 0H96v-64c0-35.3 28.7-64 64-64h8c13.3 0 24-10.7 24-24V56c0-13.3-10.7-24-24-24h-8C71.6 32 0 103.6 0 192v240c0 26.5 21.5 48 48 48h128c26.5 0 48-21.5 48-48V304c0-26.5-21.5-48-48-48z"></path></svg>
                                 <p class="d-inline">I've been turned into a cat, any thoughts on how to turn back? While I'm adorable, I don't really care for cat food.</p>
                                 <p class="pt-4"><strong>--Tisha</strong></p>
                             </div>
@@ -27,27 +27,29 @@
         </div>
     </div>
 
-    <div class="d-flex justify-content-between my-4">
+    <div class="flex justify-between my-4">
         <h2 class="">Answers <span style="font-size:1.2rem;">({{ answers|length }})</span></h2>
-        <button class="btn btn-sm btn-secondary">Submit an Answer</button>
+        <button class="transition-text transition-border ease-in-out duration-300 text-sm px-4 py-2 border rounded text-gray bg-transparent border-indigo-500 text-indigo-500 hover:border-indigo-700 hover:bg-indigo-700 hover:text-white mt-4 lg:mt-0">Submit an Answer</button>
     </div>
 
-
-
-    <ul class="list-unstyled">
+    <ul class="list-none">
         {% for answer in answers %}
-            <li class="mb-4">
-                <div class="d-flex justify-content-center">
-                    <div class="mr-2 pt-2">
+            <li class="mb-6">
+                <div class="flex">
+                    <div class="mr-6 pt-2">
                         <img src="{{ asset('images/tisha.png') }}" alt="Mallory Avatar" width="50" height="50">
                     </div>
-                    <div class="mr-3 pt-2">
+                    <div class="mr-6 pt-2">
                         {{ answer }}
                         <p>-- Mallory</p>
                     </div>
                     <div class="vote-arrows flex-fill pt-2 js-vote-arrows" style="min-width: 90px;">
-                        <a class="vote-up" data-direction="up" href="#"><i class="far fa-arrow-alt-circle-up"></i></a>
-                        <a class="vote-down" data-direction="down" href="#"><i class="far fa-arrow-alt-circle-down"></i></a>
+                        <a class="vote-up js-vote mr-2" data-direction="up" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-up" width="20" height="20" class="inline-block" role="img" viewBox="0 0 512 512"><path fill="currentColor" d="M8 256C8 119 119 8 256 8s248 111 248 248-111 248-248 248S8 393 8 256zm292 116V256h70.9c10.7 0 16.1-13 8.5-20.5L264.5 121.2c-4.7-4.7-12.2-4.7-16.9 0l-115 114.3c-7.6 7.6-2.2 20.5 8.5 20.5H212v116c0 6.6 5.4 12 12 12h64c6.6 0 12-5.4 12-12z"/></svg>
+                        </a>
+                        <a class="vote-down js-vote mr-2" data-direction="down" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="arrow-alt-circle-down" width="20" height="20" class="inline-block" role="img" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256c0 137-111 248-248 248S8 393 8 256 119 8 256 8s248 111 248 248zM212 140v116h-70.9c-10.7 0-16.1 13-8.5 20.5l114.9 114.3c4.7 4.7 12.2 4.7 16.9 0l114.9-114.3c7.6-7.6 2.2-20.5-8.5-20.5H300V140c0-6.6-5.4-12-12-12h-64c-6.6 0-12 5.4-12 12z"/></svg>
+                        </a>
                         <span>+ <span class="js-vote-total">6</span></span>
                     </div>
                 </div>
@@ -55,8 +57,4 @@
         {% endfor %}
     </ul>
 </div>
-{% endblock %}
-{% block javascripts %}
-    {{ parent() }}
-    <script src="{{ asset('js/question_show.js') }}"></script>
 {% endblock %}
