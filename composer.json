@@ -64,7 +64,8 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "test:run": "@php ./vendor/bin/pest"
+        "test:run": "@php ./vendor/bin/pest",
+        "test:coverage": "@php ./vendor/bin/pest --coverage"
     },
     "conflict": {
         "symfony/symfony": "*"
