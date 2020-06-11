@@ -12,9 +12,13 @@
 @import "components/votes";
 
 body {
-    font-family: spartan;
+    font-family: 'Spartan', sans-serif;
+    font-weight: normal;
     color: $base-dark-color;
 }
 
+strong {
+    font-weight: bold;
+}
 
 
