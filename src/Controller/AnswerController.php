@@ -1,7 +1,7 @@
 <?php
 
 /**
- * File holding CommentController class
+ * File holding AnswerController class
  *
  * @since
  * @package App\Controller
@@ -17,22 +17,22 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * CommentController class
+ * AnswerController class
  *
  * @since
  * @package App\Controller
  */
-class CommentController extends AbstractController
+class AnswerController extends AbstractController
 {
   /**
-   * @Route("/comments/{id}/vote/{direction<up|down>}", methods="POST")
+   * @Route("/answers/{id}/vote/{direction<up|down>}", methods="POST")
    *
    * @param $id
    * @param $direction
    * @param LoggerInterface $logger
    * @return JsonResponse
    */
-  public function commentVote($id, $direction, LoggerInterface $logger)
+  public function answerVote($id, $direction, LoggerInterface $logger)
   {
     if ($direction === 'up') {
       $logger->info('Voting up');
