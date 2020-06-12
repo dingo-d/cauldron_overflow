@@ -11,8 +11,11 @@ declare(strict_types=1);
 
 namespace App\DataFixtures;
 
+use BlogArticleFaker\FakerProvider;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
+use Faker\Factory;
+use Faker\Generator;
 
 /**
  * BaseFixtures class
@@ -29,11 +32,19 @@ abstract class BaseFixture extends Fixture
   private $manager;
 
   /**
+   * @var Generator
+   */
+  protected $faker;
+
+  /**
    * @inheritDoc
    */
   public function load(ObjectManager $manager)
   {
     $this->manager = $manager;
+    $this->faker = Factory::create();
+
+    $this->faker->addProvider(new FakerProvider($this->faker));
 
     $this->loadData($manager);
   }
