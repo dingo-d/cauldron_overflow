@@ -25,7 +25,9 @@
   },
   "require-dev": {
     "ext-json": "*",
+    "andrefigueira/blog-article-faker": "^1.0",
     "doctrine/doctrine-fixtures-bundle": "^3.3",
+    "fzaninotto/faker": "^1.9",
     "pestphp/pest": "^0.1.5",
     "phpunit/phpunit": "^9.0",
     "sensiolabs/security-checker": "^6.0",

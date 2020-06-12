@@ -1,4 +1,7 @@
 {
+    "andrefigueira/blog-article-faker": {
+        "version": "1.0.0"
+    },
     "clue/stream-filter": {
         "version": "v1.4.1"
     },
@@ -101,6 +104,9 @@
     },
     "filp/whoops": {
         "version": "2.7.2"
+    },
+    "fzaninotto/faker": {
+        "version": "v1.9.1"
     },
     "guzzlehttp/guzzle": {
         "version": "6.5.4"
