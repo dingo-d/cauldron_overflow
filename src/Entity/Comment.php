@@ -10,49 +10,70 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Comment
 {
-    /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
-     */
-    private $id;
+  /**
+   * @ORM\Id()
+   * @ORM\GeneratedValue()
+   * @ORM\Column(type="integer")
+   */
+  private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $content;
+  /**
+   * @ORM\Column(type="string", length=255)
+   */
+  private $content;
 
-    /**
-     * @ORM\Column(type="bigint", nullable=true)
-     */
-    private $vote = 0;
+  /**
+   * @ORM\Column(type="bigint", nullable=true)
+   */
+  private $vote = 0;
 
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
+  /**
+   * @ORM\ManyToOne(targetEntity="Question")
+   */
+  private $question;
 
-    public function getContent(): ?string
-    {
-        return $this->content;
-    }
+  public function getId(): ?int
+  {
+    return $this->id;
+  }
 
-    public function setContent(string $content): self
-    {
-        $this->content = $content;
+  public function getContent(): ?string
+  {
+    return $this->content;
+  }
 
-        return $this;
-    }
+  public function setContent(string $content): self
+  {
+    $this->content = $content;
 
-    public function getVote(): ?string
-    {
-        return $this->vote;
-    }
+    return $this;
+  }
 
-    public function setVote(?string $vote): self
-    {
-        $this->vote = $vote;
+  public function getVote(): ?string
+  {
+    return $this->vote;
+  }
 
-        return $this;
-    }
+  public function setVote(?string $vote): self
+  {
+    $this->vote = $vote;
+
+    return $this;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getQuestion()
+  {
+    return $this->question;
+  }
+
+  /**
+   * @param mixed $question
+   */
+  public function setQuestion(Question $question): void
+  {
+    $this->question = $question;
+  }
 }
