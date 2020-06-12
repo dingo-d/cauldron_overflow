@@ -76,4 +76,11 @@ class Answer
   {
     $this->question = $question;
   }
+
+  public function setVoteCount(int $vote): self
+  {
+    $this->vote = $vote;
+
+    return $this;
+  }
 }
