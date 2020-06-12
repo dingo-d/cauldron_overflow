@@ -4,29 +4,17 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\Persistence\ObjectRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
 class NewsController extends AbstractController
 {
   /**
-   * @var ArticleRepository|ObjectRepository
-   */
-  private $repository;
-
-  public function __construct(EntityManagerInterface $em)
-  {
-    $this->repository = $em->getRepository(Article::class);
-  }
-
-  /**
    * @Route("/news", name="news")
    */
-  public function index()
+  public function index(ArticleRepository $repository)
   {
-    $articles = $this->repository->findAll();
+    $articles = $repository->findAllPublishedOrderedByNewest();
 
     return $this->render('news/index.html.twig', [
       'controller_name' => 'NewsController',
@@ -37,15 +25,8 @@ class NewsController extends AbstractController
   /**
    * @Route("/news/{slug}", name="news_article_show")
    */
-  public function show($slug)
+  public function show(Article $article)
   {
-    /** @var Article $article */
-    $article = $this->repository->findOneBy(['slug' => $slug]);
-
-    if (!$article) {
-      throw $this->createNotFoundException(sprintf('No article for slug: %s', $slug));
-    }
-
     return $this->render('news/show.html.twig', [
       'article' => $article,
     ]);

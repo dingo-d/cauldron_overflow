@@ -8,9 +8,11 @@
             <a href="{{ path('news_article_show', { slug: article.slug }) }}">
                 <article class="mt-5 mb-10 p-10 border shadow-sm" id="{{ article.slug }}">
                     <h3 class="font-bold text-xl mb-5">{{ article.title }}</h3>
-                    <span class="text-sm mb-3 block">Published at:
-                        {{ article.publishedAt ? article.publishedAt|ago : 'unpublished' }}
+                    {% if article.publishedAt %}
+                    <span class="text-sm mb-3 block">
+                        Published at: {{ article.publishedAt|ago }}
                     </span>
+                    {% endif %}
                     <p>{{ article.content|striptags|slice(0,100)|parse_markdown }}...</p>
                 </article>
             </a>
