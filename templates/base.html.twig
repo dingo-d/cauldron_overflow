@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-            <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@400;700&display=swap" rel="stylesheet">
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-    </head>
-    <body class="container mx-auto p-0">
-        <nav class="flex items-center justify-between flex-wrap bg-white shadow-md p-6">
-          <a class="flex items-center flex-shrink-0 text-gray mr-6 transition-color ease-in-out duration-300 hover:text-gray-500" href="{{ path('app_homepage') }}">
-            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block mr-3" width="48" height="48" viewBox="0 0 512 512"><path d="M32 212v-40c0-6.63-6.27-12-14-12H14c-7.73 0-14 5.37-14 12v40c0 6.63 6.27 12 14 12h19.79C12.39 262.52 0 305.28 0 345.6c0 39.08 11.82 70.65 32 95.53V488c0 13.25 10.75 24 24 24s24-10.75 24-24v-7.49c38.95 21.3 89.14 31.49 144 31.49s105.05-10.19 144-31.49V488c0 13.25 10.75 24 24 24s24-10.75 24-24v-46.87c20.18-24.88 32-56.45 32-95.53 0-40.32-12.39-83.08-33.79-121.6H434c7.73 0 14-5.37 14-12zM160 64c17.67 0 32-14.33 32-32S177.67 0 160 0s-32 14.33-32 32 14.33 32 32 32zm112 64c26.51 0 48-21.49 48-48s-21.49-48-48-48-48 21.49-48 48 21.49 48 48 48z"></path></svg>
-            <p class="font-semibold text-xl tracking-tight">Cauldron Overflow</p>
-          </a>
-          <button class="transition-text transition-border ease-in-out duration-300 text-sm px-4 py-2 border rounded text-gray bg-transparent border-gray hover:border-gray-500 hover:text-gray-500 mt-4 lg:mt-0">Sign up</button>
-        </nav>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}
+        <link href="https://fonts.googleapis.com/css2?family=Spartan:wght@400;700&display=swap" rel="stylesheet">
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+<body class="container mx-auto p-0">
+<nav class="flex items-center justify-between flex-wrap bg-white shadow-md p-6">
+    <a class="flex items-center flex-shrink-0 text-gray mr-6 transition-color ease-in-out duration-300 hover:text-gray-500"
+       href="{{ path('app_homepage') }}">
+        <svg xmlns="http://www.w3.org/2000/svg" class="inline-block mr-3" width="48" height="48" viewBox="0 0 512 512">
+            <path d="M32 212v-40c0-6.63-6.27-12-14-12H14c-7.73 0-14 5.37-14 12v40c0 6.63 6.27 12 14 12h19.79C12.39 262.52 0 305.28 0 345.6c0 39.08 11.82 70.65 32 95.53V488c0 13.25 10.75 24 24 24s24-10.75 24-24v-7.49c38.95 21.3 89.14 31.49 144 31.49s105.05-10.19 144-31.49V488c0 13.25 10.75 24 24 24s24-10.75 24-24v-46.87c20.18-24.88 32-56.45 32-95.53 0-40.32-12.39-83.08-33.79-121.6H434c7.73 0 14-5.37 14-12zM160 64c17.67 0 32-14.33 32-32S177.67 0 160 0s-32 14.33-32 32 14.33 32 32 32zm112 64c26.51 0 48-21.49 48-48s-21.49-48-48-48-48 21.49-48 48 21.49 48 48 48z"></path>
+        </svg>
+        <p class="font-semibold text-xl tracking-tight">Cauldron Overflow</p>
+    </a>
+    <a class="flex items-center flex-shrink-0 text-gray mr-6 transition-color ease-in-out duration-300 hover:text-gray-500"
+       href="{{ path('news') }}">News</a>
+    <button class="transition-text transition-border ease-in-out duration-300 text-sm px-4 py-2 border rounded text-gray bg-transparent border-gray hover:border-gray-500 hover:text-gray-500 mt-4 lg:mt-0">
+        Sign up
+    </button>
+</nav>
 
-        {% block body %}{% endblock %}
-        <footer class="mt-5 p-3 text-center">
-            Made with <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart" class="inline-block text-red-500" width="16" height="16" role="img" viewBox="0 0 512 512"><path fill="currentColor" d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/></svg> by the guys and gals at <a style="color: #444; text-decoration: underline;" href="https://symfonycasts.com">SymfonyCasts</a>
-        </footer>
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </body>
+{% block body %}{% endblock %}
+<footer class="mt-5 p-3 text-center">
+    Made with
+    <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="heart"
+         class="inline-block text-red-500" width="16" height="16" role="img" viewBox="0 0 512 512">
+        <path fill="currentColor"
+              d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z"/>
+    </svg>
+    by the guys and gals at <a style="color: #444; text-decoration: underline;" href="https://symfonycasts.com">SymfonyCasts</a>
+</footer>
+{% block javascripts %}
+    {{ encore_entry_script_tags('app') }}
+{% endblock %}
+</body>
 </html>
