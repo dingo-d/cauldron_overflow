@@ -42,6 +42,10 @@ EOF
       $article->setPublishedAt(new DateTime(sprintf('-%d days', rand(1, 100))));
     }
 
+    $article->setAuthor('Author McAuthory')
+      ->setHeartCount(rand(5,100))
+      ->setImageFilename('magic-photo.png');
+
     $em->persist($article);
     $em->flush();
 
