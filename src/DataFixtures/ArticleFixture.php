@@ -3,20 +3,23 @@
 namespace App\DataFixtures;
 
 use App\Entity\Article;
-use DateTime;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class ArticleFixture extends BaseFixture
+class ArticleFixture extends BaseFixture implements DependentFixtureInterface
 {
+
+  public function getDependencies()
+  {
+    return [
+      UserFixture::class,
+    ];
+  }
+
   protected function loadData(ObjectManager $manager)
   {
-
-    $this->createMany(Article::class, 10, function(Article $article, $count) {
-      $title = $this->faker->articleTitle;
-      $slug = str_replace(' ', '-', strtolower( $title ));
-
-      $article->setTitle($title)
-        ->setSlug($slug)
+    $this->createMany(Article::class, 10, function (Article $article, $count) {
+      $article->setTitle($this->faker->text(20))
         ->setContent($this->faker->realText());
 
       // publish most articles
@@ -24,8 +27,10 @@ class ArticleFixture extends BaseFixture
         $article->setPublishedAt($this->faker->dateTimeBetween('-100 days', '-1 days'));
       }
 
-      $article->setAuthor($this->faker->name)
-        ->setHeartCount($this->faker->numberBetween(5,100))
+      $author = $this->getReference('App\Entity\User_' . $count);
+
+      $article->setAuthor($author->getName())
+        ->setHeartCount($this->faker->numberBetween(5, 100))
         ->setImageFilename('magic-photo.png');
     });
 

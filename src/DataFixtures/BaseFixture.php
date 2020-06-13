@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace App\DataFixtures;
 
-use BlogArticleFaker\FakerProvider;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
@@ -43,8 +42,6 @@ abstract class BaseFixture extends Fixture
   {
     $this->manager = $manager;
     $this->faker = Factory::create();
-
-    $this->faker->addProvider(new FakerProvider($this->faker));
 
     $this->loadData($manager);
   }
