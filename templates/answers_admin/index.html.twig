@@ -6,6 +6,20 @@
 
 {% block content_body %}
     <h1 class="font-bold text-xl">Manage Answers</h1>
+    <form class="mt-5 mb-5">
+        <div class="flex mr-6 my-2 justify-content-between">
+            <input
+                    type="search"
+                    name="q"
+                    class="bg-purple-white shadow rounded border-0 p-3 mr-10"
+                    placeholder="Search..."
+                    value="{{ app.request.get('q') }}"
+            >
+            <button type="submit" class="transition-text transition-border ease-in-out duration-300 text-sm px-4 py-2 border rounded text-gray bg-transparent border-indigo-500 text-indigo-500 hover:border-indigo-700 hover:bg-indigo-700 hover:text-white mt-4 lg:mt-0 w-1/12">
+                <span class="inline-block">Search</span>
+            </button>
+        </div>
+    </form>
     <table class="table-auto">
         <thead>
         <tr>
@@ -20,12 +34,17 @@
         {% for answer in answers %}
             <tr class="{{ loop.index is divisible by(2) ? 'bg-gray-100' : '' }}">
                 <td class="border px-4 py-2">
-                    <a class="underline text-blue-500 hover:text-blue-800" href="{{ path('app_question_show', {slug: answer.question.slug}) }}">{{ answer.question.title }}</a>
+                    <a class="underline text-blue-500 hover:text-blue-800"
+                       href="{{ path('app_question_show', {slug: answer.question.slug}) }}">{{ answer.question.title }}</a>
                 </td>
                 <td class="border px-4 py-2">{{ answer.author.name }}</td>
-                <td class="border px-4 py-2">{{ answer.content }}</td>
+                <td class="border px-4 py-2">{{ answer.content|u.truncate(50) }}...</td>
                 <td class="border px-4 py-2">{{ answer.vote }}</td>
-                <td class="border px-4 py-2">{{ answer.isDeleted ? "✅" : "❌"}}</td>
+                <td class="border px-4 py-2">{{ answer.isDeleted ? "✅" : "" }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5" class="p-5">No answers found.</td>
             </tr>
         {% endfor %}
         </tbody>

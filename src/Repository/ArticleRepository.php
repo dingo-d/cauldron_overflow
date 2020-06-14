@@ -31,18 +31,6 @@ class ArticleRepository extends ServiceEntityRepository
       ->getResult();
   }
 
-  /*
-  public function findOneBySomeField($value): ?Article
-  {
-      return $this->createQueryBuilder('a')
-          ->andWhere('a.exampleField = :val')
-          ->setParameter('val', $value)
-          ->getQuery()
-          ->getOneOrNullResult()
-      ;
-  }
-  */
-
   private function addIsPublishedQueryBuilder(QueryBuilder $qb = null)
   {
     return $this->getOrCreateQueryBuilder($qb)

@@ -54,6 +54,7 @@ class QuestionController extends AbstractController
     $questions = $questionRepository->findAll();
 
     $answersNumberData = $answerRepository->findNumberOfAnswersForQuestions();
+    dump($answersNumberData);
     $answersNumber = [];
 
     foreach ($answersNumberData as $answersNumberSingle) {
