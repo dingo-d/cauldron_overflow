@@ -28,7 +28,7 @@ class Answer
   private $vote = 0;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Question", inversedBy="answer")
+   * @ORM\ManyToOne(targetEntity="Question", inversedBy="answers")
    */
   private $question;
 

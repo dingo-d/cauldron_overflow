@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\QuestionRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -48,7 +49,7 @@ class Question
   /**
    * @ORM\OneToMany(targetEntity="App\Entity\Answer", mappedBy="question")
    */
-  private $answer;
+  private $answers;
 
   public function getId(): ?int
   {
@@ -115,13 +116,31 @@ class Question
     return $this;
   }
 
-  public function getAnswer()
+  public function getAnswers(): Collection
   {
-    return $this->answer;
+    return $this->answers;
   }
 
-  public function setAnswer($answer): void
+  public function addAnswer(Answer $answer): self
   {
-    $this->answer = $answer;
+    if (!$this->answers->contains($answer)) {
+      $this->answers[] = $answer;
+      $answer->setQuestion($this);
+    }
+
+    return $this;
+  }
+
+  public function removeAnswer(Answer $answer): self
+  {
+    if ($this->answers->contains($answer)) {
+      $this->answers->removeElement($answer);
+      // set the owning side to null (unless already changed)
+      if ($answer->getQuestion() === $this) {
+        $answer->setQuestion(null);
+      }
+    }
+
+    return $this;
   }
 }
