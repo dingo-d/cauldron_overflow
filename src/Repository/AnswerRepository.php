@@ -15,24 +15,24 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class AnswerRepository extends ServiceEntityRepository
 {
-  public function __construct(ManagerRegistry $registry)
-  {
-    parent::__construct($registry, Answer::class);
-  }
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, Answer::class);
+    }
 
-  public function findNumberOfAnswersForQuestions()
-  {
-    return $this->getOrCreateQueryBuilder()
-      ->select('IDENTITY(an.question) as question_id, count(an.question) as answer_number')
-      ->andWhere('an.isDeleted = 0')
-      ->groupBy('an.question')
-      ->getQuery()
-      ->getResult();
-  }
+    public function findNumberOfAnswersForQuestions()
+    {
+        return $this->getOrCreateQueryBuilder()
+            ->select('IDENTITY(an.question) as question_id, count(an.question) as answer_number')
+            ->andWhere('an.isDeleted = 0')
+            ->groupBy('an.question')
+            ->getQuery()
+            ->getResult();
+    }
 
-  private function getOrCreateQueryBuilder(QueryBuilder $qb = null)
-  {
-    return $qb ?: $this->createQueryBuilder('an');
-  }
+    private function getOrCreateQueryBuilder(QueryBuilder $qb = null)
+    {
+        return $qb ?: $this->createQueryBuilder('an');
+    }
 
 }
