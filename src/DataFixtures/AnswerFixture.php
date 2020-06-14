@@ -3,6 +3,8 @@
 namespace App\DataFixtures;
 
 use App\Entity\Answer;
+use App\Entity\Question;
+use App\Entity\User;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
@@ -19,18 +21,13 @@ class AnswerFixture extends BaseFixture implements DependentFixtureInterface
 
   protected function loadData(ObjectManager $manager)
   {
-    $questions = [
-      $this->getReference('App\Entity\Question_0'),
-      $this->getReference('App\Entity\Question_1'),
-      $this->getReference('App\Entity\Question_2'),
-    ];
-
-    $this->createMany(Answer::class, 10, function (Answer $answer, $count) use ($questions) {
-      $answer->setContent($this->faker->text(20))
+    $this->createMany(Answer::class, 100, function (Answer $answer, $count) {
+      $answer->setContent($this->faker->boolean ? $this->faker->paragraph : $this->faker->sentences(2, true))
         ->setVote(rand(10, 100))
-        ->setAuthor($this->getReference('App\Entity\User_' . $count))
+        ->setAuthor($this->getRandomReference(User::class))
         ->setVoteCount($this->faker->numberBetween(5, 100))
-        ->setQuestion($this->faker->randomElement($questions));
+        ->setIsDeleted($this->faker->boolean(20))
+        ->setQuestion($this->getRandomReference(Question::class));
     });
 
     $manager->flush();
