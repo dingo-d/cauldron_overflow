@@ -101,4 +101,18 @@ class Answer
 
       return $this;
   }
+
+  public function incrementVote(): self
+  {
+    $this->vote = $this->vote + 1;
+
+    return $this;
+  }
+
+  public function decrementVote(): self
+  {
+    $this->vote = $this->vote - 1;
+
+    return $this;
+  }
 }
