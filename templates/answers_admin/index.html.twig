@@ -1,11 +1,11 @@
 {% extends 'content_base.html.twig' %}
 
-{% block title %}Manage comments{% endblock %}
+{% block title %}Manage answers{% endblock %}
 
-{% block content_class %}{{ parent() }} border-t-2 border-green-600{% endblock %}
+{% block content_class %}{{ parent() }} p-5 border-t-2 border-green-600{% endblock %}
 
 {% block content_body %}
-    <h1 class="font-bold text-xl">Manage Answers</h1>
+    <h1 class="font-bold text-xl">Manage Answers ({{ pagination.getTotalItemCount }})</h1>
     <form class="mt-5 mb-5">
         <div class="flex mr-6 my-2 justify-content-between">
             <input
@@ -31,7 +31,7 @@
         </tr>
         </thead>
         <tbody>
-        {% for answer in answers %}
+        {% for answer in pagination %}
             <tr class="{{ loop.index is divisible by(2) ? 'bg-gray-100' : '' }}">
                 <td class="border px-4 py-2">
                     <a class="underline text-blue-500 hover:text-blue-800"
@@ -49,4 +49,7 @@
         {% endfor %}
         </tbody>
     </table>
+    <div class="p-3 mt-5">
+        {{ knp_pagination_render(pagination) }}
+    </div>
 {% endblock %}

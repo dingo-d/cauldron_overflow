@@ -37,25 +37,23 @@ class AnswerRepository extends ServiceEntityRepository
 
     /**
      * @param string|null $term
-     * @return Comment[]
      */
-    public function findAllWIthSearch(?string $term)
+    public function getWithSearchQueryBuilder(?string $term): QueryBuilder
     {
         $qb = $this->getOrCreateQueryBuilder();
 
         $qb->innerJoin('an.author', 'u')
             ->innerJoin('an.question', 'q')
             ->addSelect('q')
-            ->addSelect('u');
+            ->addSelect('u')
+            ->orderBy('an.vote', 'DESC');
 
         if ($term) {
             $qb->andWhere('an.content LIKE :term OR u.name LIKE :term OR q.title LIKE :term')
                 ->setParameter('term', '%' . $term . '%');
         }
 
-        return $qb->orderBy('an.vote', 'DESC')
-            ->getQuery()
-            ->getResult();
+        return $qb;
     }
 
 }
