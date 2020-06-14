@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'content_base.html.twig' %}
 
 {% block title %}Article: {{ article.title }}{% endblock %}
 
-{% block body %}
-<div class="container">
+{% block content_body %}
+<div class="p-5">
     <h1 class="mt-10 mb-10 font-bold text-xl">{{ article.title }}</h1>
     {% if article.imageFilename %}
         <img src="{{ asset(article.imagePath) }}" alt="Article image" class="mb-5" />
