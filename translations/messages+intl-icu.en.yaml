@@ -1,0 +1,6 @@
+num_of_answers: >-
+    {answers, plural,
+        =0  {There are no answers}
+        one  {There is 1 answer}
+        other  {There are # answers}
+    }

@@ -11,12 +11,11 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Service\MarkdownHelper;
+use App\Repository\AnswerRepository;
+use App\Repository\QuestionRepository;
 use Psr\Log\LoggerInterface;
-use Sentry\State\HubInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Twig\Environment;
 
 /**
  * QuestionController class
@@ -39,41 +38,50 @@ class QuestionController extends AbstractController
   /**
    * @Route("/", name="app_homepage")
    */
-  public function homepage(Environment $twigEnvironment)
+  public function homepage(QuestionRepository $questionRepository, AnswerRepository $answerRepository)
   {
     /**
      * Example using a service.
+     *
+     * You need to add Environment $twigEnvironment as the method argument
      *
      * $html = $twigEnvironment->render('question/homepage.html.twig');
      *
      * return new Response($html);
      */
-    return $this->render('question/homepage.html.twig');
+
+    $questions = $questionRepository->findAll();
+
+    $answersNumberData = $answerRepository->findNumberOfAnswersForQuestions();
+
+    $answersNumber = [];
+
+    foreach ($answersNumberData as $answersNumberSingle) {
+      $answersNumber[$answersNumberSingle['question_id']] = $answersNumberSingle['answer_number'];
+    }
+
+    return $this->render('question/homepage.html.twig', [
+      'questions' => $questions,
+      'answerData' => $answersNumber,
+    ]);
 
   }
 
   /**
    * @Route("/questions/{slug}", name="app_question_show")
    */
-  public function show($slug, MarkdownHelper $markdownHelper)
+  public function show($slug, QuestionRepository $questionRepository, AnswerRepository $answerRepository)
   {
     if ($this->isDebug) {
       $this->logger->info('We are in debug mode');
     }
 
-    $answers = [
-      'Make sure your cat is sitting `purrrfectly` still 🤣',
-      'Honestly, I like furry shoes better than MY cat',
-      'Maybe... try saying the spell backwards',
-    ];
+    $answers = $answerRepository->findAnswersForQuestion($slug);
 
-    $questionText = 'I\'ve been turned into a cat, any *thoughts* on how to turn back? While I\'m **adorable**, I don\'t really care for cat food.';
-
-    $parsedQuestionText = $markdownHelper->parse($questionText);
+    $question = $questionRepository->findBy(['slug' => $slug]);
 
     return $this->render('question/show.html.twig', [
-      'question' => ucwords(str_replace('-', ' ', $slug)),
-      'questionText' => $parsedQuestionText,
+      'question' => $question[0],
       'answers'  => $answers,
     ]);
   }
