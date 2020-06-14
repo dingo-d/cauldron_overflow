@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\Question;
 use App\Repository\AnswerRepository;
 use App\Repository\QuestionRepository;
 use Psr\Log\LoggerInterface;
@@ -70,18 +71,16 @@ class QuestionController extends AbstractController
   /**
    * @Route("/questions/{slug}", name="app_question_show")
    */
-  public function show($slug, QuestionRepository $questionRepository, AnswerRepository $answerRepository)
+  public function show(Question $question)
   {
     if ($this->isDebug) {
       $this->logger->info('We are in debug mode');
     }
 
-    $answers = $answerRepository->findAnswersForQuestion($slug);
-
-    $question = $questionRepository->findBy(['slug' => $slug]);
+    $answers = $question->getAnswer();
 
     return $this->render('question/show.html.twig', [
-      'question' => $question[0],
+      'question' => $question,
       'answers'  => $answers,
     ]);
   }

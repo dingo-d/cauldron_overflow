@@ -28,7 +28,7 @@ class Answer
   private $vote = 0;
 
   /**
-   * @ORM\ManyToOne(targetEntity="Question")
+   * @ORM\ManyToOne(targetEntity="Question", inversedBy="answer")
    */
   private $question;
 
@@ -92,14 +92,14 @@ class Answer
 
   public function getAuthor(): ?User
   {
-      return $this->author;
+    return $this->author;
   }
 
   public function setAuthor(?User $author): self
   {
-      $this->author = $author;
+    $this->author = $author;
 
-      return $this;
+    return $this;
   }
 
   public function incrementVote(): self

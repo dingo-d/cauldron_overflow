@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\Answer;
-use App\Entity\Question;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
@@ -26,17 +25,6 @@ class AnswerRepository extends ServiceEntityRepository
     return $this->getOrCreateQueryBuilder()
       ->select('IDENTITY(an.question) as question_id, count(an.question) as answer_number')
       ->groupBy('an.question')
-      ->getQuery()
-      ->getResult();
-  }
-
-  public function findAnswersForQuestion($slug)
-  {
-    return $this->getOrCreateQueryBuilder()
-      ->select('an')
-      ->leftJoin(Question::class, 'q', 'WITH', 'an.question = q.id')
-      ->andWhere('q.slug = :slug')
-      ->setParameter('slug', $slug)
       ->getQuery()
       ->getResult();
   }
