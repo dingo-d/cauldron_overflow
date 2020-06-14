@@ -38,6 +38,11 @@ class Answer
    */
   private $author;
 
+  /**
+   * @ORM\Column(type="boolean")
+   */
+  private $isDeleted = false;
+
   public function getId(): ?int
   {
     return $this->id;
@@ -114,5 +119,17 @@ class Answer
     $this->vote = $this->vote - 1;
 
     return $this;
+  }
+
+  public function getIsDeleted(): ?bool
+  {
+      return $this->isDeleted;
+  }
+
+  public function setIsDeleted(bool $isDeleted): self
+  {
+      $this->isDeleted = $isDeleted;
+
+      return $this;
   }
 }

@@ -47,7 +47,8 @@ class Question
   private $author;
 
   /**
-   * @ORM\OneToMany(targetEntity="App\Entity\Answer", mappedBy="question")
+   * @ORM\OneToMany(targetEntity="App\Entity\Answer", mappedBy="question", fetch="EXTRA_LAZY")
+   * @ORM\OrderBy({"vote" = "DESC"})
    */
   private $answers;
 
@@ -119,6 +120,13 @@ class Question
   public function getAnswers(): Collection
   {
     return $this->answers;
+  }
+
+  public function getNonDeletedAnswers(): Collection
+  {
+    $criteria = QuestionRepository::createNonDeletedCriteria();
+
+    return $this->answers->matching($criteria);
   }
 
   public function addAnswer(Answer $answer): self
