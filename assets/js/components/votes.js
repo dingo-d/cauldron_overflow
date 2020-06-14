@@ -11,8 +11,8 @@ export class Votes {
   }
 
   @bind
-  vote(direction, event) {
-    fetch(`/comments/10/vote/${direction}`, {
+  vote(direction, event, id) {
+    fetch(`/answers/${id}/vote/${direction}`, {
       method: this.METHOD,
     }).then((res) => res.json())
       .then((data) => {

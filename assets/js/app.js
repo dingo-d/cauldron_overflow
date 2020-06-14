@@ -21,7 +21,8 @@ if(document.querySelectorAll(votingOptions.voteContainer).length) {
     [...document.querySelectorAll('.js-vote')].map((element) => {
      element.addEventListener('click', (event) => {
        event.preventDefault();
-       votes.vote(element.getAttribute('data-direction'), event);
+       const id = element.parentElement.getAttribute('data-id');
+       votes.vote(element.getAttribute('data-direction'), event, id);
      });
     });
   });
