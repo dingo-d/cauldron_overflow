@@ -24,6 +24,7 @@ class AnswerRepository extends ServiceEntityRepository
   {
     return $this->getOrCreateQueryBuilder()
       ->select('IDENTITY(an.question) as question_id, count(an.question) as answer_number')
+      ->andWhere('an.isDeleted = 0')
       ->groupBy('an.question')
       ->getQuery()
       ->getResult();
