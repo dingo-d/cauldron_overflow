@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="{% block content_class %}container mt-10 mb-10{% endblock %}">
+        <div class=" row mb-5 mt-5">
+            {% block content_body %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

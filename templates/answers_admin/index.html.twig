@@ -1,0 +1,33 @@
+{% extends 'content_base.html.twig' %}
+
+{% block title %}Manage comments{% endblock %}
+
+{% block content_class %}{{ parent() }} border-t-2 border-green-600{% endblock %}
+
+{% block content_body %}
+    <h1 class="font-bold text-xl">Manage Answers</h1>
+    <table class="table-auto">
+        <thead>
+        <tr>
+            <th class="px-4 py-2">Question</th>
+            <th class="px-4 py-2">Author</th>
+            <th class="px-4 py-2">Answer</th>
+            <th class="px-4 py-2">Votes</th>
+            <th class="px-4 py-2">Is Deleted</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for answer in answers %}
+            <tr class="{{ loop.index is divisible by(2) ? 'bg-gray-100' : '' }}">
+                <td class="border px-4 py-2">
+                    <a class="underline text-blue-500 hover:text-blue-800" href="{{ path('app_question_show', {slug: answer.question.slug}) }}">{{ answer.question.title }}</a>
+                </td>
+                <td class="border px-4 py-2">{{ answer.author.name }}</td>
+                <td class="border px-4 py-2">{{ answer.content }}</td>
+                <td class="border px-4 py-2">{{ answer.vote }}</td>
+                <td class="border px-4 py-2">{{ answer.isDeleted ? "✅" : "❌"}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
