@@ -138,6 +138,9 @@
     "knplabs/knp-time-bundle": {
         "version": "v1.11.0"
     },
+    "liip/test-fixtures-bundle": {
+        "version": "1.9.1"
+    },
     "michelf/php-markdown": {
         "version": "1.9.0"
     },
@@ -161,6 +164,15 @@
     },
     "pestphp/pest": {
         "version": "v0.1.5"
+    },
+    "pestphp/pest-plugin": {
+        "version": "v0.2.0"
+    },
+    "pestphp/pest-plugin-coverage": {
+        "version": "v0.2.0"
+    },
+    "pestphp/pest-plugin-init": {
+        "version": "v0.2.1"
     },
     "phar-io/manifest": {
         "version": "1.0.3"
